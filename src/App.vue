@@ -1,16 +1,24 @@
 <template>
   <div id="app">
-    test
+    <el-container>
+      <el-aside wdith="200px">
+        <Menu></Menu>
+      </el-aside>
+      <el-main>
+        <router-view></router-view>
+      </el-main>
+    </el-container>
   </div>
 </template>
 
 <script>
-
+import Menu from './components/Menu.vue'
+import PassAdd from './components/password/Add.vue'
 export default {
-  name: 'App',
-  components: {
-
-  }
+    name: 'App',
+    components: {
+      Menu, PassAdd
+    }
 }
 </script>
 
