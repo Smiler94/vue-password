@@ -28,6 +28,7 @@
 </template>
 
 <script>
+  import passwordApi from '../../api/passwordApi'
   export default {
     data() {
       return {
@@ -43,7 +44,8 @@
     },
     methods: {
       onSubmit() {
-        console.log('submit!');
+        console.log(this.form)
+        passwordApi.add(this.form)
       }
     }
   }

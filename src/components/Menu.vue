@@ -27,5 +27,7 @@
 </script>
 
 <style scoped>
-
+  .el-menu {
+    text-align: center
+  }
 </style>
