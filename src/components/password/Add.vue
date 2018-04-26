@@ -28,7 +28,7 @@
 </template>
 
 <script>
-  import passwordApi from '../../api/passwordApi'
+  import passwordApi from '../../api/password'
   export default {
     data() {
       return {

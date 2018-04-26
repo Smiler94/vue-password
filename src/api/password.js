@@ -3,11 +3,19 @@ import qs from 'qs'
 export default {
   add (data) {
     axios({
-      url: 'http://tms241.com/Home/Testlz/testApi',
+      url: '/api/Home/Testlz/testApi',
       data: qs.stringify(data),
       method: 'post'
     }).then(res => {
       console.log(res)
+    })
+  },
+  list (f) {
+    axios({
+      url: '/api/Home/Pass/passList',
+      method: 'get'
+    }).then(res => {
+      f(res.data)
     })
   }
 }

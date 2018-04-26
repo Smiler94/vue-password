@@ -1,6 +1,6 @@
 <template>
   <el-table
-    :data="tableData5"
+    :data="list"
     style="width: 100%">
     <el-table-column type="expand">
       <template slot-scope="props">
@@ -42,43 +42,19 @@
 </template>
 
 <script>
+  import passApi from '../../api/password.js'
   export default {
     data() {
       return {
-        tableData5: [{
-          id: '12987122',
-          name: 'github',
-          account: '273487984@qq.com',
-          site_url: 'https://github.com',
-          type: '工作',
-          password: 'sdfasdfasdf',
-          remark: '这是 github 账号,需要强制解析阿斯顿发送到发送到发送打算地方阿斯蒂芬 水电费阿斯蒂芬稍等发'
-        }, {
-          id: '12987123',
-          name: 'github',
-          account: '273487984@qq.com',
-          site_url: 'https://github.com',
-          type: '工作',
-          password: 'sdfasdfasdf',
-          remark: '这是 github 账号'
-        }, {
-          id: '12987125',
-          name: 'github',
-          account: '273487984@qq.com',
-          site_url: 'https://github.com',
-          type: '工作',
-          password: 'sdfasdfasdf',
-          remark: '这是 github 账号'
-        }, {
-          id: '12987126',
-          name: 'github',
-          account: '273487984@qq.com',
-          site_url: 'https://github.com',
-          type: '工作',
-          password: 'sdfasdfasdf',
-          remark: '这是 github 账号'
-        }]
+        list: []
       }
+    },
+    mounted () {
+      this.$nextTick(() => {
+        passApi.list((data) => {
+          this.list = data
+        })
+      })
     }
   }
 </script>
