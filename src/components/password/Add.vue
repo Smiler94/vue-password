@@ -4,7 +4,7 @@
       <el-input v-model="form.name"></el-input>
     </el-form-item>
     <el-form-item label="网址">
-      <el-input v-model="form.site_url"></el-input>
+      <el-input v-model="form.url"></el-input>
     </el-form-item>
     <el-form-item label="账号">
       <el-input v-model="form.account"></el-input>
@@ -12,10 +12,13 @@
     <el-form-item label="密码">
       <el-input v-model="form.password"></el-input>
     </el-form-item>
+    <el-form-item label="确认">
+      <el-input v-model="form.repassword"></el-input>
+    </el-form-item>
     <el-form-item label="分类">
       <el-select v-model="form.type" placeholder="请选择分类">
-        <el-option label="工作" value="work"></el-option>
-        <el-option label="生活" value="life"></el-option>
+        <el-option label="工作" value="1"></el-option>
+        <el-option label="生活" value="2"></el-option>
       </el-select>
     </el-form-item>
     <el-form-item label="备注">
@@ -34,9 +37,10 @@
       return {
         form: {
           name:'',
-          site_url:'',
+          url:'',
           account:'',
           password:'',
+          repassword:'',
           type:'',
           remark:''
         }
@@ -44,8 +48,9 @@
     },
     methods: {
       onSubmit() {
-        console.log(this.form)
-        passwordApi.add(this.form)
+        passwordApi.add(this.form, function(res) {
+
+        })
       }
     }
   }

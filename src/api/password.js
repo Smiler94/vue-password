@@ -1,18 +1,21 @@
 import axios from 'axios'
 import qs from 'qs'
+
+let baseUrl = '/api/index/Password/'
+
 export default {
-  add (data) {
+  add (data, f) {
     axios({
-      url: '/api/Home/Testlz/testApi',
+      url: baseUrl + 'addPassword',
       data: qs.stringify(data),
       method: 'post'
     }).then(res => {
-      console.log(res)
+      f(res.data)
     })
   },
   list (f) {
     axios({
-      url: '/api/Home/Pass/passList',
+      url: baseUrl + 'passwordList',
       method: 'get'
     }).then(res => {
       f(res.data)
