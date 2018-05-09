@@ -42,7 +42,10 @@
     </el-table>
     <el-pagination
       layout="prev, pager, next"
-      :total="page_count"
+      :total="record_count"
+      @prev-click="getList"
+      @next-click="getList"
+      @current-change="getList"
     >
     </el-pagination>
   </div>
@@ -54,23 +57,21 @@
     data() {
       return {
         list: [],
-        page_count: 0,
-        page: 1
+        record_count: 0,
+        page: 2
       }
     },
     mounted () {
       this.$nextTick(() => {
-        passApi.list((data) => {
-          this.list = data.info.list
-          this.page_count = data.info.page_count
-        })
+        this.getList(1)
       })
     },
     methods: {
       getList (page) {
-        passApi.list((data) => {
+        console.log(page)
+        passApi.list(page, (data) => {
           this.list = data.info.list
-          this.page_count = data.info.page_count
+          this.record_count = data.info.record_count
         })
       }
     }
@@ -93,6 +94,6 @@
 
   .el-table {
     width: 100%;
-    min-height:300px;
+    min-height:528px;
   }
 </style>

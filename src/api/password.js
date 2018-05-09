@@ -13,9 +13,9 @@ export default {
       f(res.data)
     })
   },
-  list (f) {
+  list (page, f) {
     axios({
-      url: baseUrl + 'passwordList',
+      url: baseUrl + 'passwordList?page='+page,
       method: 'get'
     }).then(res => {
       f(res.data)

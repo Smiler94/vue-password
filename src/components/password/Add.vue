@@ -9,11 +9,11 @@
     <el-form-item label="账号">
       <el-input v-model="form.account"></el-input>
     </el-form-item>
-    <el-form-item label="密码">
-      <el-input v-model="form.password"></el-input>
+    <el-form-item label="密码" prop="pass">
+      <el-input type="password" v-model="form.password" auto-complete="false"></el-input>
     </el-form-item>
-    <el-form-item label="确认">
-      <el-input v-model="form.repassword"></el-input>
+    <el-form-item label="确认" prop="checkPass">
+      <el-input type="password" v-model="form.repassword" auto-complete="false"></el-input>
     </el-form-item>
     <el-form-item label="分类">
       <el-select v-model="form.type" placeholder="请选择分类">
@@ -48,8 +48,12 @@
     },
     methods: {
       onSubmit() {
-        passwordApi.add(this.form, function(res) {
-
+        passwordApi.add(this.form, (res) => {
+          if (res.code != '0') {
+            this.$message.error(res.msg)
+          } else {
+            this.$message.success('添加成功')
+          }
         })
       }
     }
