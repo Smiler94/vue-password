@@ -1,5 +1,13 @@
 <template>
   <div class="block">
+    <el-form ref="form" :model="filter" :inline="true">
+      <el-form-item>
+        <el-input v-model="filter.key_word"></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="getList(1)">搜索</el-button>
+      </el-form-item>
+    </el-form>
     <el-table
       :data="list"
       >
@@ -43,6 +51,7 @@
     <el-pagination
       layout="prev, pager, next"
       :total="record_count"
+      :current-page="page"
       @prev-click="getList"
       @next-click="getList"
       @current-change="getList"
@@ -56,9 +65,12 @@
   export default {
     data() {
       return {
+        filter: {
+          key_word: ""
+        },
         list: [],
         record_count: 0,
-        page: 2
+        page: 1
       }
     },
     mounted () {
@@ -68,10 +80,10 @@
     },
     methods: {
       getList (page) {
-        console.log(page)
-        passApi.list(page, (data) => {
+        passApi.list(page, this.filter,  (data) => {
           this.list = data.info.list
           this.record_count = data.info.record_count
+          this.page = page
         })
       }
     }
